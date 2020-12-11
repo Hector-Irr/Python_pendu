@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """
+C'est le programme principal pour la version avec affichage graphique
 @author: Hector Irrmann
 Created on Fri Dec 11 08:26:25 2020
 To Do: fonctionnement programme avec interface graphique: 
@@ -11,7 +12,7 @@ from tkinter import Tk, Entry, Button, Canvas, Label, StringVar
 
 fenetre = Tk()
 fenetre.title('Pendu python Tkinter')
-
+Canvas(fenetre, width=1000, height=500, bg='gray').pack()
 
 # importation des fonctions nécessaires
 from ma_lib_tkinter import freponse, fLettres, fMot, fEssai, fAffiche
@@ -27,10 +28,11 @@ mot=freponse()
 listeLettre=fLettres(mot)
 Mot=fMot(listeLettre)
 
+
 essai=StringVar()
 champ=Entry(fenetre, textvariable=essai, bg="white")
 essaibouton=essai.get()
-bouton=Button(fenetre, text="Soumettre", command=fEssai(essaibouton,proposition,lettretrouve))
+bouton=Button(fenetre, text="Proposer", command=fEssai(essaibouton,proposition,lettretrouve))
 
    
 reponse=fAffiche(listeLettre)
@@ -50,9 +52,6 @@ if gagner==True:
 else:
     print("Vous avez perdu! Le mot a trouver était:",mot)
 print("La partie est terminée!")
-
-
-
 
 
 
