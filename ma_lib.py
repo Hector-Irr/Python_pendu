@@ -3,14 +3,14 @@
 Ce programme sert a stocker les différentes fonctions utilisées dans le programme principal
 @author: Hector Irrmann
 Created on Fri Dec 11 08:26:42 2020
-To Do: rajouter des mots dans la liste et les ordonner
+To Do: rajouter des mots dans la liste si besoin
 """
 
 from random import randint
 
 def freponse():                                     #Renvoi le mot à trouver
-    listeMots=["ordinateur","abeille","python"]
-    a=randint(0,2)
+    listeMots=["jour","mois","poste","annee","python","abeille","ordinateur"]
+    a=randint(0,6)
     mot=listeMots[a]
     return mot
 
