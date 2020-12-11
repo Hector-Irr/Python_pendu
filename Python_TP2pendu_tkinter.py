@@ -2,71 +2,46 @@
 """
 @author: Hector Irrmann
 Created on Fri Dec 11 08:26:25 2020
-To Do: toute interface graphique
+To Do: fonctionnement programme avec interface graphique: 
+prendre en compte ce qui est écrit dans entry, afficher image 
+pendu, compter chances, changer affichage quand on a une bonne lettre
 """
 #création de l'interface graphique
-from tkinter import Tk, Entry, Button, Canvas, label
+from tkinter import Tk, Entry, Button, Canvas, Label, StringVar
 
 fenetre = Tk()
-label =label(fenetre, text="Hello")
 fenetre.title('Pendu python Tkinter')
 
 
 # importation des fonctions nécessaires
-from ma_lib import freponse
-from ma_lib import fLettres
-from ma_lib import fMot
+from ma_lib_tkinter import freponse, fLettres, fMot, fEssai, fAffiche
 
 #création des variables nécessaires au programme
-chance=8
-n=0
 gagner=False
 
-reponse=""
+
 proposition=""
 lettreTrouve=""
-
+chance=8
 mot=freponse()
 listeLettre=fLettres(mot)
 Mot=fMot(listeLettre)
 
-#affichage du mot à trouver avec des '_' pour les lettres inconnues        
-for i in mot:
-    if n==0:
-        reponse=reponse+i
-        n=n+1
-    else :
-        reponse=reponse+" _"
-print(reponse)
+essai=StringVar()
+champ=Entry(fenetre, textvariable=essai, bg="white")
+essaibouton=essai.get()
+bouton=Button(fenetre, text="Soumettre", command=fEssai(essaibouton,proposition,lettretrouve))
 
-#boucle qui permet de demander des lettres au joueur jusqu'à ce que le mot soit complet
-#ou que le nombre de chance tombe à 0
-while chance>0 :
-    
-    lettre=input("Quelle est la lettre que vous souhaitez essayer ? ")
-    if lettre in proposition:
-        print("Vous avez déjà essayé la lettre ",lettre," essayez-en une autre!")
-    elif len(lettre)>1:
-        print("Vous ne devez inscrire qu'une lettre à la fois!")
-    else:
-        proposition=proposition+lettre
-        if lettre in Mot:
-            lettreTrouve=lettreTrouve+lettre
-        else:
-            chance=chance-1
    
-    reponse=listeLettre[0]
-    for i in Mot:
-        if i in lettreTrouve:
-            reponse=reponse+i
-            
-        else:
-            reponse=reponse+" _"
-    print(reponse)
-    if "_" not in reponse:
-        gagner=True
-        break
-    print("Il vous reste ",chance," chance(s).") 
+reponse=fAffiche(listeLettre)
+
+labelreponse= Label(fenetre, text=reponse)
+labelreponse.pack()
+
+if "_" not in reponse:
+    gagner=True
+    
+print("Il vous reste ",chance," chance(s).") 
     
     
 #affiche si le joueur a gagné ou perdu et la fin de la partie

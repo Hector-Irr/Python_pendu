@@ -29,5 +29,30 @@ def fMot (listeLettre):     #Renvoi une chaine de caractère avec toutes les let
     return var
 
 
-def fEssai(lettre):
+
+
+
+def fEssai(lettre,proposition,lettretrouve):
+    if lettre not in proposition:
+        proposition=proposition+lettre
+        if lettre in Mot:
+            lettretrouve=lettretrouve+lettre
+        else:
+            chance=chance-1
+            
+
+        
+
+def fAffiche(listeLettre):
+    reponse=listeLettre[0]
+    for i in Mot:
+        if i in lettretrouve:
+            reponse=reponse+i
+        else:
+            reponse=reponse+" _"
+
+def fChance():
+
     
+
+
